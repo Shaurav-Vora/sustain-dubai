@@ -53,7 +53,7 @@ public class ActivitiesFragment extends Fragment {
                 logActivity("Used metro / tram / bus", 20, 3, 0, 0));
 
         btnProveRecycle.setOnClickListener(v ->
-                logActivity("Recycled bottles / cans", 30, 1, 0, 1));
+                logActivity("Recycled bottles / cans", 500, 1, 0, 1));
 
         btnProveWater.setOnClickListener(v ->
                 logActivity("Saved water", 15, 0, 10, 0));
@@ -63,10 +63,23 @@ public class ActivitiesFragment extends Fragment {
 
     private void logActivity(String label, int points, int co2Kg, int waterL, int wasteKg) {
         // Update fake backend
+
+        int beforePoints = prefs.getPoints();
+        int beforeLevel = (beforePoints / 500) + 1;
+
+
         prefs.addPoints(points);
         prefs.addCo2Saved(co2Kg);
         prefs.addWaterSaved(waterL);
         prefs.addWasteDiverted(wasteKg);
+
+        int afterPoints = prefs.getPoints();
+        int afterLevel = (afterPoints / 500) + 1;
+
+        if (afterLevel > beforeLevel) {
+            prefs.setPendingLevelUp(true);
+            prefs.setLastLevel(afterLevel);
+        }
 
         // Time-stamped history line
         String timestamp = dateFormat.format(new Date());
