@@ -50,8 +50,14 @@ public class DashboardFragment extends Fragment {
         tvLevelUpBanner = view.findViewById(R.id.tvLevelUpBanner);
         btnCloseLevelUp = view.findViewById(R.id.btnCloseLevelUp);
 
-        btnCloseLevelUp.setOnClickListener(v -> cardLevelUpBanner.setVisibility(View.GONE));
-
+        btnCloseLevelUp.setOnClickListener(v -> {
+            cardLevelUpBanner.animate()
+                    .translationY(-300f)
+                    .alpha(0f)
+                    .setDuration(400)
+                    .withEndAction(() -> cardLevelUpBanner.setVisibility(View.GONE))
+                    .start();
+        });
 
         // Update UI with current data
         updateStats();
@@ -68,45 +74,29 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        updateStats();
+        new android.os.Handler().postDelayed(this::updateStats, 300);
         maybeShowLevelUpBanner();
     }
 
     private void updateStats() {
-
-        // 1. Get the current number showing on screen
-        int startPoints;
+        // 1. Logic for points count-up
+        int oldPoints;
         try {
-            startPoints = Integer.parseInt(tvPoints.getText().toString());
-        } catch (NumberFormatException e) {
-            startPoints = 0;
-        }
+            oldPoints = Integer.parseInt(tvPoints.getText().toString());
+        } catch (Exception e) { oldPoints = 0; }
 
-        // 2. Get the new values from the mock backend
-        int points = prefs.getPoints();
-        int co2 = prefs.getCo2Saved();
-        int water = prefs.getWaterSaved();
-        int waste = prefs.getWasteDiverted();
+        int newPoints = prefs.getPoints();
+        animateTextChange(tvPoints, oldPoints, newPoints);
 
-        // 3. Trigger the animation for points
-        animateTextChange(tvPoints, startPoints, points);
+        // 2. Update stats labels
+        tvCo2.setText(prefs.getCo2Saved() + " kg");
+        tvWater.setText(prefs.getWaterSaved() + " L");
+        tvWaste.setText(prefs.getWasteDiverted() + " kg");
 
-        // 4. Update the other stats normally
-
-        tvCo2.setText(co2 + " kg");
-        tvWater.setText(water + " L");
-        tvWaste.setText(waste + " kg");
-        tvPoints.setText(String.valueOf(points));
-
-
-        int level = (points / 500) + 1;
-        tvLevelLabel.setText("Level " + level + " • Desert Seedling");
-
-        int progressToNext = points % 500;
-        progressLevel.setMax(500);
-        progressLevel.setProgress(progressToNext);
-
-        showLevelUpBanner(level);
+        // 3. Smooth Progress Bar Fill
+        android.animation.ObjectAnimator.ofInt(progressLevel, "progress", progressLevel.getProgress(), (newPoints % 500))
+                .setDuration(1000)
+                .start();
     }
 
     // Inside your updateStats() method or wherever banner is shown:
@@ -129,13 +119,20 @@ public class DashboardFragment extends Fragment {
     }
 
     private void maybeShowLevelUpBanner() {
-        int currentLevel = (prefs.getPoints() / 500) + 1;
         if (prefs.hasPendingLevelUp()) {
+            int currentLevel = (prefs.getPoints() / 500) + 1;
             tvLevelUpBanner.setText("🎉 You reached Level " + currentLevel + "!");
+
+            // Modern Slide-In Animation
             cardLevelUpBanner.setVisibility(View.VISIBLE);
+            cardLevelUpBanner.setTranslationY(-200f); // Start above screen
+            cardLevelUpBanner.animate()
+                    .translationY(0)
+                    .setDuration(600)
+                    .setInterpolator(new android.view.animation.OvershootInterpolator())
+                    .start();
+
             prefs.setPendingLevelUp(false);
-        } else {
-            cardLevelUpBanner.setVisibility(View.GONE);
         }
     }
 
