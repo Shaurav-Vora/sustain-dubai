@@ -18,8 +18,7 @@ import com.google.android.material.card.MaterialCardView;
 public class DashboardFragment extends Fragment {
 
     private EcoPrefs prefs;
-
-
+    private int lastDisplayedPoints = -1;
     private TextView tvPoints, tvCo2, tvWater, tvWaste, tvLevelLabel;
     private MaterialCardView cardLevelUpBanner;
     private TextView tvLevelUpBanner;
@@ -74,69 +73,77 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        new android.os.Handler().postDelayed(this::updateStats, 300);
+        updateStats();
         maybeShowLevelUpBanner();
     }
 
     private void updateStats() {
-        // 1. Logic for points count-up
-        int oldPoints;
-        try {
-            oldPoints = Integer.parseInt(tvPoints.getText().toString());
-        } catch (Exception e) { oldPoints = 0; }
-
         int newPoints = prefs.getPoints();
-        animateTextChange(tvPoints, oldPoints, newPoints);
+        int lastDisplayedPoints = prefs.getLastDisplayedPoints();
 
-        // 2. Update stats labels
+
+        // Determine starting point for animation
+        if (lastDisplayedPoints == -1) {
+            // First time ever - just set the value
+            tvPoints.setText(String.valueOf(newPoints));
+            prefs.setLastDisplayedPoints(newPoints);
+        } else if (lastDisplayedPoints != newPoints) {
+            animateTextChange(tvPoints, lastDisplayedPoints, newPoints);
+        } else {
+            tvPoints.setText(String.valueOf(newPoints));
+        }
+
+        // Update stats labels
         tvCo2.setText(prefs.getCo2Saved() + " kg");
         tvWater.setText(prefs.getWaterSaved() + " L");
         tvWaste.setText(prefs.getWasteDiverted() + " kg");
 
-        // 3. Smooth Progress Bar Fill
-        android.animation.ObjectAnimator.ofInt(progressLevel, "progress", progressLevel.getProgress(), (newPoints % 500))
+        // Update level label
+        int currentLevel = (newPoints / 500) + 1;
+        String levelName = getLevelName(currentLevel);
+        tvLevelLabel.setText("Level " + currentLevel + " • " + levelName);
+
+        // Smooth Progress Bar animation
+        int progressValue = newPoints % 500;
+        android.animation.ObjectAnimator.ofInt(progressLevel, "progress", progressLevel.getProgress(), progressValue)
                 .setDuration(1000)
                 .start();
     }
 
-    // Inside your updateStats() method or wherever banner is shown:
-    private void showLevelUpBanner(int currentLevel) {
-        int lastLevel = prefs.getLastLevel();
-        if (currentLevel > lastLevel) {
-            prefs.setLastLevel(currentLevel);
-            tvLevelUpBanner.setText("🎉 You reached Level " + currentLevel + "!");
-
-            // Modern approach: Animated entrance
-            cardLevelUpBanner.setVisibility(View.VISIBLE);
-            cardLevelUpBanner.setAlpha(0f);
-            cardLevelUpBanner.setTranslationY(-20f);
-            cardLevelUpBanner.animate()
-                    .alpha(1f)
-                    .translationY(0f)
-                    .setDuration(500)
-                    .start();
-        }
-    }
 
     private void maybeShowLevelUpBanner() {
         if (prefs.hasPendingLevelUp()) {
             int currentLevel = (prefs.getPoints() / 500) + 1;
-            tvLevelUpBanner.setText("🎉 You reached Level " + currentLevel + "!");
+            String levelName = getLevelName(currentLevel);
+            tvLevelUpBanner.setText("You're now a " + levelName + "!");
 
-            // Modern Slide-In Animation
+            // Modern bounce-in animation
             cardLevelUpBanner.setVisibility(View.VISIBLE);
-            cardLevelUpBanner.setTranslationY(-200f); // Start above screen
+            cardLevelUpBanner.setScaleX(0.8f);
+            cardLevelUpBanner.setScaleY(0.8f);
+            cardLevelUpBanner.setAlpha(0f);
+
             cardLevelUpBanner.animate()
-                    .translationY(0)
-                    .setDuration(600)
-                    .setInterpolator(new android.view.animation.OvershootInterpolator())
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .alpha(1f)
+                    .setDuration(400)
+                    .setInterpolator(new android.view.animation.OvershootInterpolator(1.2f))
                     .start();
 
             prefs.setPendingLevelUp(false);
         }
     }
 
-
+    private String getLevelName(int level) {
+        switch (level) {
+            case 1: return "Desert Seedling";
+            case 2: return "Ghaf Protector";
+            case 3: return "Oasis Guardian";
+            case 4: return "Sustainability Champion";
+            default: return "Eco Warrior Level " + level;
+        }
+    }
     private void switchBottomTab(int menuItemId) {
         if (getActivity() == null) return;
         BottomNavigationView bottomNav = getActivity().findViewById(R.id.bottom_nav);
@@ -148,7 +155,16 @@ public class DashboardFragment extends Fragment {
     private void animateTextChange(TextView tv, int start, int end) {
         android.animation.ValueAnimator animator = android.animation.ValueAnimator.ofInt(start, end);
         animator.setDuration(800);
-        animator.addUpdateListener(animation -> tv.setText(animation.getAnimatedValue().toString()));
+        animator.addUpdateListener(animation -> {
+            tv.setText(animation.getAnimatedValue().toString());
+        });
+        animator.addListener(new android.animation.AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(android.animation.Animator animation) {
+                // Save the final value after animation completes
+                prefs.setLastDisplayedPoints(end);
+            }
+        });
         animator.start();
     }
 }

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 public class EcoPrefs {
 
     private static final String PREF_NAME = "SustainDubai_Data";
+    private static final String KEY_LAST_DISPLAYED_POINTS = "last_displayed_points";
     private static final String KEY_POINTS = "points";
     private static final String KEY_CO2 = "co2_saved";
     private static final String KEY_WATER = "water_saved";
@@ -24,6 +25,14 @@ public class EcoPrefs {
 
     public int getCo2Saved() { return prefs.getInt(KEY_CO2, 0); }
     public void addCo2Saved(int kg) { prefs.edit().putInt(KEY_CO2, getCo2Saved() + kg).apply(); }
+
+    public int getLastDisplayedPoints() {
+        return prefs.getInt(KEY_LAST_DISPLAYED_POINTS, -1);
+    }
+
+    public void setLastDisplayedPoints(int points) {
+        prefs.edit().putInt(KEY_LAST_DISPLAYED_POINTS, points).apply();
+    }
 
     public int getWaterSaved() { return prefs.getInt(KEY_WATER, 0); }
     public void addWaterSaved(int liters) { prefs.edit().putInt(KEY_WATER, getWaterSaved() + liters).apply(); }

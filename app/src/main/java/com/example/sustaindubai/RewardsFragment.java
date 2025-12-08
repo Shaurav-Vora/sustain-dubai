@@ -47,7 +47,7 @@ public class RewardsFragment extends Fragment {
         prefs = new EcoPrefs(requireContext());
 
         tvPointsBalance = view.findViewById(R.id.tvPointsBalance);
-        tvLastRedeemed = view.findViewById(R.id.tvLastRedeemed);
+//        tvLastRedeemed = view.findViewById(R.id.tvLastRedeemed);
 
         btnRedeemNol = view.findViewById(R.id.btnRedeemNol);
         btnRedeemCoffee = view.findViewById(R.id.btnRedeemCoffee);

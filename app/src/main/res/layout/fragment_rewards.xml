@@ -11,12 +11,13 @@
         android:orientation="vertical"
         android:padding="20dp">
 
+        <!-- Header Section -->
         <TextView
             android:id="@+id/tvRewardsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Redeem your impact"
-            android:textSize="22sp"
+            android:text="Redeem Rewards"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="#123026" />
 
@@ -24,238 +25,742 @@
             android:id="@+id/tvRewardsSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Turn Oasis Points into Dubai‑based, sustainable rewards."
-            android:textSize="13sp"
-            android:textColor="#4A6359"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="16dp" />
-
-        <TextView
-            android:id="@+id/tvPointsBalance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Balance: 0 pts"
+            android:text="Turn your sustainable actions into real Dubai perks."
             android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="#1B5E3C"
-            android:layout_marginBottom="16dp" />
+            android:textColor="#4A6359"
+            android:layout_marginTop="4dp" />
 
-        <!-- Nol credit reward -->
+        <!-- Points Balance Card -->
         <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardNol"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="3dp"
-        app:cardBackgroundColor="#FFFFFF">
-
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="#1B5E3C">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="10 AED Nol top‑up"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#123026" />
+                android:orientation="horizontal"
+                android:padding="20dp"
+                android:gravity="center_vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Use your Nol card across Dubai Metro, tram and buses."
-                android:textSize="12sp"
-                android:textColor="#4A6359"
-                android:layout_marginTop="4dp" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvCostNol"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cost: 500 pts"
-                android:textSize="12sp"
-                android:textColor="#2E7D5A"
-                android:layout_marginTop="4dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Available Balance"
+                        android:textSize="13sp"
+                        android:textColor="#A5D6A7" />
 
-            <Button
-                android:id="@+id/btnRedeemNol"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Redeem"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="#1B5E3C"
-                android:textColor="#FFFFFF" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:id="@+id/tvPointsBalance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 pts"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
 
-    <!-- Coffee reward -->
-    <com.google.android.material.card.MaterialCardView
-    android:id="@+id/cardCoffee"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="3dp"
-    app:cardBackgroundColor="#FFFFFF">
+                <TextView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:text="🌿"
+                    android:textSize="40sp"
+                    android:gravity="center" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
+        <!-- Category: Transport -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sustainable coffee voucher"
+            android:text="🚇 Transport"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="#123026" />
+            android:textColor="#123026"
+            android:layout_marginBottom="12dp" />
 
+        <!-- RTA Nol Credit -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardNol"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FFFFFF"
+            android:foreground="?attr/selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <!-- Icon Section -->
+                <LinearLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/reward_icon_bg_red"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🎫"
+                        android:textSize="32sp" />
+                </LinearLayout>
+
+                <!-- Content Section -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RTA Nol Card Credit"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#123026" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10 AED top-up for Metro, Tram &amp; Bus"
+                        android:textSize="12sp"
+                        android:textColor="#4A6359"
+                        android:layout_marginTop="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="500"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#D32F2F" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" pts"
+                            android:textSize="13sp"
+                            android:textColor="#4A6359" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Redeem Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRedeemNol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Redeem"
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    app:cornerRadius="12dp"
+                    android:backgroundTint="#1B5E3C"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Careem Eco Ride -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCareem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FFFFFF"
+            android:foreground="?attr/selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/reward_icon_bg_green"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🚗"
+                        android:textSize="32sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Careem Electric Ride"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#123026" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="25 AED voucher for electric vehicle rides"
+                        android:textSize="12sp"
+                        android:textColor="#4A6359"
+                        android:layout_marginTop="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="800"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#2E7D5A" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" pts"
+                            android:textSize="13sp"
+                            android:textColor="#4A6359" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRedeemCareem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Redeem"
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    app:cornerRadius="12dp"
+                    android:backgroundTint="#1B5E3C"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Category: Food & Beverage -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Discount at partner cafes when you bring a reusable cup."
-            android:textSize="12sp"
-            android:textColor="#4A6359"
-            android:layout_marginTop="4dp" />
+            android:text="☕ Food &amp; Beverage"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#123026"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp" />
 
+        <!-- Reusable Cup Discount -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCoffee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FFFFFF"
+            android:foreground="?attr/selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/reward_icon_bg_brown"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="☕"
+                        android:textSize="32sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Café Discount Voucher"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#123026" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="15 AED off with reusable cup at partner cafés"
+                        android:textSize="12sp"
+                        android:textColor="#4A6359"
+                        android:layout_marginTop="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="300"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#6D4C41" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" pts"
+                            android:textSize="13sp"
+                            android:textColor="#4A6359" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRedeemCoffee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Redeem"
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    app:cornerRadius="12dp"
+                    android:backgroundTint="#1B5E3C"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Organic Market -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardMarket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FFFFFF"
+            android:foreground="?attr/selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/reward_icon_bg_orange"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🥗"
+                        android:textSize="32sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Organic Food Market"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#123026" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50 AED voucher at Ripe Market Dubai"
+                        android:textSize="12sp"
+                        android:textColor="#4A6359"
+                        android:layout_marginTop="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1200"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#FF6F00" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" pts"
+                            android:textSize="13sp"
+                            android:textColor="#4A6359" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRedeemMarket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Redeem"
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    app:cornerRadius="12dp"
+                    android:backgroundTint="#1B5E3C"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Category: Environment -->
         <TextView
-            android:id="@+id/tvCostCoffee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cost: 300 pts"
-            android:textSize="12sp"
-            android:textColor="#2E7D5A"
-            android:layout_marginTop="4dp" />
+            android:text="🌳 Environmental Impact"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#123026"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp" />
 
-        <Button
-            android:id="@+id/btnRedeemCoffee"
+        <!-- Plant Ghaf Tree -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardTree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FFFFFF"
+            android:foreground="?attr/selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/reward_icon_bg_green_dark"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🌳"
+                        android:textSize="32sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Plant a Ghaf Tree"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#123026" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Native tree planted in UAE desert reserves"
+                        android:textSize="12sp"
+                        android:textColor="#4A6359"
+                        android:layout_marginTop="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="800"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#1B5E3C" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" pts"
+                            android:textSize="13sp"
+                            android:textColor="#4A6359" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRedeemTree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Redeem"
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    app:cornerRadius="12dp"
+                    android:backgroundTint="#1B5E3C"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Mangrove Conservation -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardMangrove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FFFFFF"
+            android:foreground="?attr/selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/reward_icon_bg_teal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🌊"
+                        android:textSize="32sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Protect Dubai Mangroves"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#123026" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Support coastal ecosystem restoration"
+                        android:textSize="12sp"
+                        android:textColor="#4A6359"
+                        android:layout_marginTop="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1000"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#00897B" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" pts"
+                            android:textSize="13sp"
+                            android:textColor="#4A6359" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRedeemMangrove"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Redeem"
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    app:cornerRadius="12dp"
+                    android:backgroundTint="#1B5E3C"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Category: Lifestyle -->
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Redeem"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#1B5E3C"
-            android:textColor="#FFFFFF" />
+            android:text="🛍️ Sustainable Living"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#123026"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Eco Starter Kit -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardEcoPack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FFFFFF"
+            android:foreground="?attr/selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/reward_icon_bg_blue"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="♻️"
+                        android:textSize="32sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Zero-Waste Starter Kit"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#123026" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reusable bags, bottles, bamboo utensils"
+                        android:textSize="12sp"
+                        android:textColor="#4A6359"
+                        android:layout_marginTop="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1500"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#1976D2" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" pts"
+                            android:textSize="13sp"
+                            android:textColor="#4A6359" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRedeemEcoPack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Redeem"
+                    android:textSize="12sp"
+                    android:layout_gravity="center_vertical"
+                    app:cornerRadius="12dp"
+                    android:backgroundTint="#1B5E3C"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
-
-    <!-- Tree / conservation reward -->
-<com.google.android.material.card.MaterialCardView
-    android:id="@+id/cardTree"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="3dp"
-    app:cardBackgroundColor="#FFFFFF">
-
-<LinearLayout
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:orientation="vertical"
-android:padding="16dp">
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Plant a Ghaf tree"
-    android:textSize="16sp"
-    android:textStyle="bold"
-    android:textColor="#123026" />
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Support native tree planting in UAE desert reserves."
-    android:textSize="12sp"
-    android:textColor="#4A6359"
-    android:layout_marginTop="4dp" />
-
-<TextView
-    android:id="@+id/tvCostTree"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Cost: 800 pts"
-    android:textSize="12sp"
-    android:textColor="#2E7D5A"
-    android:layout_marginTop="4dp" />
-
-<Button
-    android:id="@+id/btnRedeemTree"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Redeem"
-    android:layout_marginTop="10dp"
-    android:backgroundTint="#1B5E3C"
-    android:textColor="#FFFFFF" />
-</LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Eco-product reward -->
-<com.google.android.material.card.MaterialCardView
-    android:id="@+id/cardEcoPack"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="3dp"
-    app:cardBackgroundColor="#FFFFFF">
-
-<LinearLayout
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:orientation="vertical"
-android:padding="16dp">
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Home eco‑starter pack"
-    android:textSize="16sp"
-    android:textStyle="bold"
-    android:textColor="#123026" />
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Voucher for UAE eco‑brands (bottle, bags, bamboo items)."
-    android:textSize="12sp"
-    android:textColor="#4A6359"
-    android:layout_marginTop="4dp" />
-
-<TextView
-    android:id="@+id/tvCostEcoPack"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Cost: 1000 pts"
-    android:textSize="12sp"
-    android:textColor="#2E7D5A"
-    android:layout_marginTop="4dp" />
-
-<Button
-    android:id="@+id/btnRedeemEcoPack"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Redeem"
-    android:layout_marginTop="10dp"
-    android:backgroundTint="#1B5E3C"
-    android:textColor="#FFFFFF" />
-</LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Simple last redeemed info -->
-<TextView
-android:id="@+id/tvLastRedeemed"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:text="No rewards redeemed yet."
-android:textSize="12sp"
-android:textColor="#4A6359"
-android:layout_marginTop="20dp" />
-    </LinearLayout>
-    </ScrollView>
+</ScrollView>
