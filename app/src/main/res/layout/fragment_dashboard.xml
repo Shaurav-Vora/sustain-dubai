@@ -51,53 +51,52 @@
                 android:src="@android:drawable/ic_menu_myplaces"
                 app:tint="#1B5E3C" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardLevelUpBanner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="8dp"
-                app:strokeWidth="1.5dp"
-                app:strokeColor="#A5D6A7"
-                app:cardBackgroundColor="#E8F5E9"
-                android:visibility="gone">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:id="@+id/tvLevelUpBanner"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="🎉 Level Up! You're a Ghaf Protector"
-                        android:textColor="#1B5E3C"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toStartOf="@+id/btnCloseLevelUp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/btnCloseLevelUp"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@android:drawable/ic_menu_close_clear_cancel"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:padding="4dp"
-                        app:tint="#1B5E3C"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardLevelUpBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="8dp"
+            app:strokeWidth="1.5dp"
+            app:strokeColor="#A5D6A7"
+            app:cardBackgroundColor="#E8F5E9"
+            android:visibility="gone">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvLevelUpBanner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="🎉 Level Up! You're a Ghaf Protector"
+                    android:textColor="#1B5E3C"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/btnCloseLevelUp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/btnCloseLevelUp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="4dp"
+                    app:tint="#1B5E3C"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Points Card -->
         <com.google.android.material.card.MaterialCardView
