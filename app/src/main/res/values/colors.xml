@@ -2,4 +2,19 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="ghaf_green">#1B5E3C</color>
+    <color name="ghaf_green_dark">#123026</color>
+    <color name="ghaf_green_light">#2E7D5A</color>
+    <color name="desert_sand_bg">#F3F7F4</color>
+    <color name="text_primary">#123026</color>
+    <color name="text_secondary">#4A6359</color>
+    <color name="text_hint">#757575</color>
+    <color name="color_transport_red">#D32F2F</color>
+    <color name="color_transport_blue">#2196F3</color>
+    <color name="color_waste_orange">#FF6F00</color>
+    <color name="color_water_cyan">#00ACC1</color>
+    <color name="nav_active">#1B5E3C</color>
+    <color name="nav_inactive">#757575</color>
 </resources>

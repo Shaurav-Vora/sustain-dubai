@@ -18,6 +18,11 @@
             android:gravity="center_vertical"
             android:layout_marginBottom="20dp">
 
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="55dp"  android:layout_height="55dp"
+                android:src="@drawable/sustain_dubai" />
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -52,14 +57,6 @@
                 app:strokeColor="#A5D6A7"
                 app:cardBackgroundColor="#FFFFFF">
 
-                <ImageView
-                    android:id="@+id/imgLeaf"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerInside"
-                    android:padding="10dp"
-                    android:src="@android:drawable/ic_menu_myplaces"
-                    app:tint="#1B5E3C" />
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 

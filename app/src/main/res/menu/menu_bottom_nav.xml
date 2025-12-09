@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+
     <item
         android:id="@+id/nav_activities"
-        android:icon="@android:drawable/ic_menu_agenda"
+        android:icon="@drawable/ic_nav_activities"
         android:title="Activities" />
 
     <item
         android:id="@+id/nav_dashboard"
-        android:icon="@android:drawable/ic_menu_view"
-
-        android:title="Dashboard" />
+        android:icon="@drawable/ic_nav_home"
+        android:title="Home" />
 
     <item
         android:id="@+id/nav_rewards"
-        android:icon="@android:drawable/ic_menu_myplaces"
+        android:icon="@drawable/ic_nav_rewards"
         android:title="Rewards" />
 
 </menu>
