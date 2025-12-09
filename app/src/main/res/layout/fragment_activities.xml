@@ -11,216 +11,507 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <TextView
-            android:id="@+id/tvActivitiesTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Log an activity"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="#123026" />
-
-        <TextView
-            android:id="@+id/tvActivitiesSubtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Choose what you did today for a more sustainable Dubai."
-            android:textSize="13sp"
-            android:textColor="#4A6359"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Walking -->
-        <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardWalk"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="3dp"
-        app:cardBackgroundColor="#FFFFFF">
-
+        <!-- Header Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_marginBottom="20dp">
 
             <TextView
+                android:id="@+id/tvActivitiesTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Walked instead of driving"
-                android:textSize="16sp"
+                android:text="Log Activities"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="#123026" />
 
             <TextView
+                android:id="@+id/tvActivitiesSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+10 points • approx. 1 kg CO₂ avoided"
-                android:textSize="12sp"
+                android:text="Track your sustainable actions and earn points."
+                android:textSize="14sp"
                 android:textColor="#4A6359"
                 android:layout_marginTop="4dp" />
+        </LinearLayout>
 
-            <Button
-                android:id="@+id/btnProveWalk"
+        <!-- Walking Activity -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardWalk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+                <!-- Icon Section with Gradient Background -->
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/activity_bg_blue"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🚶"
+                        android:textSize="36sp" />
+                </LinearLayout>
+
+                <!-- Content Section -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Walking"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#123026" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Walked instead of driving"
+                        android:textSize="13sp"
+                        android:textColor="#4A6359"
+                        android:layout_marginTop="4dp" />
+
+                    <!-- Points Badge -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+10"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#2196F3" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" pts"
+                            android:textSize="12sp"
+                            android:textColor="#4A6359" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" • "
+                            android:textSize="12sp"
+                            android:textColor="#4A6359"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="~1 kg CO₂ saved"
+                            android:textSize="12sp"
+                            android:textColor="#4A6359" />
+                    </LinearLayout>
+
+                    <!-- Action Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnProveWalk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Log Activity"
+                        android:textSize="13sp"
+                        app:cornerRadius="12dp"
+                        android:backgroundTint="#2196F3"
+                        android:textColor="#FFFFFF"
+                        app:icon="@android:drawable/ic_menu_camera"
+                        app:iconTint="#FFFFFF"
+                        app:iconGravity="textStart"
+                        app:iconPadding="8dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Metro/Public Transport Activity -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardMetro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/activity_bg_red"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🚇"
+                        android:textSize="36sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Public Transport"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#123026" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Used metro, tram, or bus"
+                        android:textSize="13sp"
+                        android:textColor="#4A6359"
+                        android:layout_marginTop="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+20"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#D32F2F" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" pts"
+                            android:textSize="12sp"
+                            android:textColor="#4A6359" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" • "
+                            android:textSize="12sp"
+                            android:textColor="#4A6359"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="~3 kg CO₂ saved"
+                            android:textSize="12sp"
+                            android:textColor="#4A6359" />
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnProveMetro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Log Activity"
+                        android:textSize="13sp"
+                        app:cornerRadius="12dp"
+                        android:backgroundTint="#D32F2F"
+                        android:textColor="#FFFFFF"
+                        app:icon="@android:drawable/ic_menu_camera"
+                        app:iconTint="#FFFFFF"
+                        app:iconGravity="textStart"
+                        app:iconPadding="8dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Recycling Activity -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardRecycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/activity_bg_green"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="♻️"
+                        android:textSize="36sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Recycling"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#123026" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Recycled bottles or cans"
+                        android:textSize="13sp"
+                        android:textColor="#4A6359"
+                        android:layout_marginTop="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+500"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#388E3C" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" pts"
+                            android:textSize="12sp"
+                            android:textColor="#4A6359" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" • "
+                            android:textSize="12sp"
+                            android:textColor="#4A6359"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="~1 kg waste diverted"
+                            android:textSize="12sp"
+                            android:textColor="#4A6359" />
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnProveRecycle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Log Activity"
+                        android:textSize="13sp"
+                        app:cornerRadius="12dp"
+                        android:backgroundTint="#388E3C"
+                        android:textColor="#FFFFFF"
+                        app:icon="@android:drawable/ic_menu_camera"
+                        app:iconTint="#FFFFFF"
+                        app:iconGravity="textStart"
+                        app:iconPadding="8dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Water Saving Activity -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardWater"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/activity_bg_cyan"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="💧"
+                        android:textSize="36sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Water Conservation"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#123026" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Shorter shower or taps off"
+                        android:textSize="13sp"
+                        android:textColor="#4A6359"
+                        android:layout_marginTop="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+15"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#00ACC1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" pts"
+                            android:textSize="12sp"
+                            android:textColor="#4A6359" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" • "
+                            android:textSize="12sp"
+                            android:textColor="#4A6359"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="~10 L water saved"
+                            android:textSize="12sp"
+                            android:textColor="#4A6359" />
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnProveWater"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Log Activity"
+                        android:textSize="13sp"
+                        app:cornerRadius="12dp"
+                        android:backgroundTint="#00ACC1"
+                        android:textColor="#FFFFFF"
+                        app:icon="@android:drawable/ic_menu_camera"
+                        app:iconTint="#FFFFFF"
+                        app:iconGravity="textStart"
+                        app:iconPadding="8dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Activity History Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/tvRecentTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Upload proof"
-                android:backgroundTint="#1B5E3C"
-                android:textColor="#FFFFFF" />
+                android:text="Recent Activity"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#123026"
+                android:layout_marginBottom="12dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <TextView
+                    android:id="@+id/tvRecentLog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No activities logged yet. Start tracking your sustainable actions!"
+                    android:textSize="13sp"
+                    android:textColor="#4A6359"
+                    android:padding="16dp"
+                    android:lineSpacingExtra="4dp" />
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Metro / Public transport -->
-    <com.google.android.material.card.MaterialCardView
-    android:id="@+id/cardMetro"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="3dp"
-    app:cardBackgroundColor="#FFFFFF">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Used metro / tram / bus"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#123026" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="+20 points • approx. 3 kg CO₂ avoided"
-            android:textSize="12sp"
-            android:textColor="#4A6359"
-            android:layout_marginTop="4dp" />
-
-        <Button
-            android:id="@+id/btnProveMetro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Upload proof"
-            android:backgroundTint="#1B5E3C"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
-
-    <!-- Recycling -->
-    <com.google.android.material.card.MaterialCardView
-    android:id="@+id/cardRecycle"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="3dp"
-    app:cardBackgroundColor="#FFFFFF">
-
-<LinearLayout
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:orientation="vertical"
-android:padding="16dp">
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Recycled bottles / cans"
-    android:textSize="16sp"
-    android:textStyle="bold"
-    android:textColor="#123026" />
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="+30 points • waste diverted from landfill"
-    android:textSize="12sp"
-    android:textColor="#4A6359"
-    android:layout_marginTop="4dp" />
-
-<Button
-    android:id="@+id/btnProveRecycle"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:text="Upload proof"
-    android:backgroundTint="#1B5E3C"
-    android:textColor="#FFFFFF" />
-</LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Water saving -->
-<com.google.android.material.card.MaterialCardView
-    android:id="@+id/cardWater"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="3dp"
-    app:cardBackgroundColor="#FFFFFF">
-
-<LinearLayout
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:orientation="vertical"
-android:padding="16dp">
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Saved water"
-    android:textSize="16sp"
-    android:textStyle="bold"
-    android:textColor="#123026" />
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="+15 points • shorter shower / taps off"
-    android:textSize="12sp"
-    android:textColor="#4A6359"
-    android:layout_marginTop="4dp" />
-
-<Button
-    android:id="@+id/btnProveWater"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:text="Upload proof"
-    android:backgroundTint="#1B5E3C"
-    android:textColor="#FFFFFF" />
-</LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- History -->
-<TextView
-android:id="@+id/tvRecentTitle"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Recent activity history"
-android:textSize="14sp"
-android:textStyle="bold"
-android:textColor="#123026"
-android:layout_marginTop="20dp"
-android:layout_marginBottom="4dp" />
-
-<TextView
-android:id="@+id/tvRecentLog"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:text="No activities logged yet."
-android:textSize="12sp"
-android:textColor="#4A6359" />
 
     </LinearLayout>
-    </ScrollView>
+</ScrollView>
