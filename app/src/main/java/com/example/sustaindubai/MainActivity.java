@@ -26,19 +26,25 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
             int itemId = item.getItemId();
+
             if (itemId == R.id.nav_dashboard) {
                 selectedFragment = new DashboardFragment();
             } else if (itemId == R.id.nav_activities) {
                 selectedFragment = new ActivitiesFragment();
             } else if (itemId == R.id.nav_rewards) {
                 selectedFragment = new RewardsFragment();
+            } else if (itemId == R.id.nav_news) {  // <--- ADD THIS BLOCK
+                selectedFragment = new NewsFragment();
             }
+
             if (selectedFragment != null) {
                 loadFragment(selectedFragment);
             }
             return true;
         });
     }
+
+    // 8f487ba547cd4f59bab6ad50b6491d70
 
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
