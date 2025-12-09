@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5">
 
-    <LinearLayout
-        android:id="@+id/news_container"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/news_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Latest Updates"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:layout_marginBottom="16dp"/>
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Latest Updates"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#123026"
+                android:layout_marginBottom="16dp"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="#1B5E3C"
+        android:visibility="visible"/>
+
+</FrameLayout>
