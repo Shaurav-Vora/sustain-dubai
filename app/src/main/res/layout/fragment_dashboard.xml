@@ -20,8 +20,10 @@
 
             <ImageView
                 android:id="@+id/imgLogo"
-                android:layout_width="55dp"  android:layout_height="55dp"
-                android:src="@drawable/sustain_dubai" />
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:src="@drawable/sustain_dubai"
+                android:layout_marginEnd="12dp"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -57,8 +59,95 @@
                 app:strokeColor="#A5D6A7"
                 app:cardBackgroundColor="#FFFFFF">
 
+                <ImageView
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/user"
+                    app:tint="#1B5E3C" />
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardDailyTip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#C8E6C9"
+            app:cardBackgroundColor="#F1F8E9">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_marginEnd="16dp">
+
+                    <FrameLayout
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/shape_circle_green_light">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="💡"
+                            android:textSize="24sp"
+                            android:layout_gravity="center"/>
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DAILY ECO TIP"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.1"
+                        android:textColor="#1B5E3C"
+                        android:background="@drawable/bg_pill_green_accent"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="4dp"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TextView
+                        android:id="@+id/tvDailyTip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Dubai recycles over 10% of its waste. Help us reach 50%!"
+                        android:textSize="15sp"
+                        android:textStyle="normal"
+                        android:textColor="#123026"
+                        android:lineSpacingExtra="4dp"
+                        android:fontFamily="sans-serif-medium"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/btnCloseTip"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    app:tint="#A5D6A7"
+                    android:alpha="0.7"/>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardLevelUpBanner"
@@ -238,50 +327,28 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_marginEnd="12dp">
-
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="2dp"
                     app:cardBackgroundColor="#FFFFFF">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="12dp"
                         android:gravity="center">
-
                         <LinearLayout
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:background="@drawable/stat_bg_co2"
                             android:gravity="center"
                             android:layout_marginBottom="8dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="☁️"
-                                android:textSize="20sp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="☁️" android:textSize="20sp"/>
                         </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/tvCo2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0 kg"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:textColor="#123026" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="CO₂ Saved"
-                            android:textSize="11sp"
-                            android:textColor="#4A6359"
-                            android:gravity="center"/>
+                        <TextView android:id="@+id/tvCo2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0 kg" android:textSize="16sp" android:textStyle="bold" android:textColor="#123026" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CO₂ Saved" android:textSize="11sp" android:textColor="#4A6359" android:gravity="center"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -292,50 +359,28 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_marginEnd="12dp">
-
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="2dp"
                     app:cardBackgroundColor="#FFFFFF">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="12dp"
                         android:gravity="center">
-
                         <LinearLayout
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:background="@drawable/stat_bg_water"
                             android:gravity="center"
                             android:layout_marginBottom="8dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="💧"
-                                android:textSize="20sp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="💧" android:textSize="20sp"/>
                         </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/tvWater"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0 L"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:textColor="#123026" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Water"
-                            android:textSize="11sp"
-                            android:textColor="#4A6359"
-                            android:gravity="center"/>
+                        <TextView android:id="@+id/tvWater" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0 L" android:textSize="16sp" android:textStyle="bold" android:textColor="#123026" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Water" android:textSize="11sp" android:textColor="#4A6359" android:gravity="center"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -345,50 +390,28 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
-
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="2dp"
                     app:cardBackgroundColor="#FFFFFF">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="12dp"
                         android:gravity="center">
-
                         <LinearLayout
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:background="@drawable/stat_bg_waste"
                             android:gravity="center"
                             android:layout_marginBottom="8dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="♻️"
-                                android:textSize="20sp"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="♻️" android:textSize="20sp"/>
                         </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/tvWaste"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0 kg"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:textColor="#123026" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Diverted"
-                            android:textSize="11sp"
-                            android:textColor="#4A6359"
-                            android:gravity="center"/>
+                        <TextView android:id="@+id/tvWaste" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0 kg" android:textSize="16sp" android:textStyle="bold" android:textColor="#123026" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Diverted" android:textSize="11sp" android:textColor="#4A6359" android:gravity="center"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -424,35 +447,16 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="16dp">
-
                     <LinearLayout
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:background="@drawable/reward_icon_bg_blue"
                         android:gravity="center"
                         android:layout_marginBottom="12dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="📸"
-                            android:textSize="20sp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="📸" android:textSize="20sp"/>
                     </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Log Activity"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#123026" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Scan &amp; earn"
-                        android:textSize="12sp"
-                        android:textColor="#4A6359"
-                        android:layout_marginTop="4dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Log Activity" android:textSize="16sp" android:textStyle="bold" android:textColor="#123026" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Scan &amp; earn" android:textSize="12sp" android:textColor="#4A6359" android:layout_marginTop="4dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -472,35 +476,16 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="16dp">
-
                     <LinearLayout
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:background="@drawable/reward_icon_bg_red"
                         android:gravity="center"
                         android:layout_marginBottom="12dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🎁"
-                            android:textSize="20sp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🎁" android:textSize="20sp"/>
                     </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rewards"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#123026" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Spend points"
-                        android:textSize="12sp"
-                        android:textColor="#4A6359"
-                        android:layout_marginTop="4dp" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rewards" android:textSize="16sp" android:textStyle="bold" android:textColor="#123026" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Spend points" android:textSize="12sp" android:textColor="#4A6359" android:layout_marginTop="4dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 

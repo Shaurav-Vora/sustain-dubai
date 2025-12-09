@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -23,6 +22,11 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class ActivitiesFragment extends Fragment implements SensorEventListener {
 
@@ -32,8 +36,11 @@ public class ActivitiesFragment extends Fragment implements SensorEventListener 
     private boolean isSensorActive = false;
 
     // UI Elements
-    private MaterialButton btnProveWalk;
-    private TextView tvWalkStats; // You might want to add a text view to show live steps
+    private MaterialButton btnProveWalk, btnProveMetro, btnProveRecycle, btnProveWater;
+    private TextView tvRecentLog;
+
+    private final SimpleDateFormat dateFormat =
+            new SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault());
 
     // Permission Launcher
     private final ActivityResultLauncher<String> requestPermissionLauncher =
@@ -41,14 +48,14 @@ public class ActivitiesFragment extends Fragment implements SensorEventListener 
                 if (isGranted) {
                     startStepCounting();
                 } else {
-                    Toast.makeText(getContext(), "Permission needed to count steps!", Toast.LENGTH_SHORT).show();
+                    showSnack("Permission needed to count steps!");
                 }
             });
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_activities, container, false); // Make sure this matches your XML name
+        View view = inflater.inflate(R.layout.fragment_activities, container, false);
 
         prefs = new EcoPrefs(requireContext());
 
@@ -58,40 +65,53 @@ public class ActivitiesFragment extends Fragment implements SensorEventListener 
             stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         }
 
-        // Bind Buttons (Use the IDs from your new dashboard XML)
+        // Bind UI Elements
         btnProveWalk = view.findViewById(R.id.btnProveWalk);
+        btnProveMetro = view.findViewById(R.id.btnProveMetro);
+        btnProveRecycle = view.findViewById(R.id.btnProveRecycle);
+        btnProveWater = view.findViewById(R.id.btnProveWater);
+        tvRecentLog = view.findViewById(R.id.tvRecentLog);
 
-        // --- WALKING LOGIC ---
+        // --- WALKING LOGIC (Step Counter) ---
         btnProveWalk.setOnClickListener(v -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACTIVITY_RECOGNITION)
                         != PackageManager.PERMISSION_GRANTED) {
-                    // Ask for permission
                     requestPermissionLauncher.launch(Manifest.permission.ACTIVITY_RECOGNITION);
                 } else {
-                    // Permission already granted
                     startStepCounting();
                 }
             } else {
-                // Old Android versions don't need runtime permission
                 startStepCounting();
             }
         });
 
-        // ... Bind other buttons (Metro, Recycle, etc.) here ...
+        // --- METRO/PUBLIC TRANSPORT ---
+        btnProveMetro.setOnClickListener(v ->
+                logActivity("Public Transport", 20, 3, 0, 0, "🚇"));
+
+        // --- RECYCLING ---
+        btnProveRecycle.setOnClickListener(v ->
+                logActivity("Recycling", 500, 1, 0, 1, "♻️"));
+
+        // --- WATER SAVING ---
+        btnProveWater.setOnClickListener(v ->
+                logActivity("Water Conservation", 15, 0, 10, 0, "💧"));
 
         return view;
     }
 
+    // ==================== STEP COUNTING LOGIC ====================
+
     private void startStepCounting() {
         if (stepSensor == null) {
-            Toast.makeText(getContext(), "No Step Sensor found on this device (Are you on Emulator?)", Toast.LENGTH_LONG).show();
-            // Fallback for Emulator: Just simulate it
-            logWalkingPoints(1500); // Pretend they walked 1500 steps
+            // Fallback for devices without step sensor (like emulators)
+            showSnack("No step sensor found. Simulating 1500 steps...");
+            logWalkingPoints(1500);
             return;
         }
 
-        Toast.makeText(getContext(), "Syncing steps...", Toast.LENGTH_SHORT).show();
+        showSnack("Syncing steps...");
         isSensorActive = true;
         sensorManager.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_UI);
     }
@@ -99,63 +119,130 @@ public class ActivitiesFragment extends Fragment implements SensorEventListener 
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (isSensorActive && event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
-            // 1. Get the raw total from the sensor (e.g., 5000 steps since reboot)
             int currentSensorSteps = (int) event.values[0];
-
-            // 2. Get the count we already paid for (e.g., 4000 steps)
             int lastRedeemed = prefs.getLastRedeemedSteps();
-
-            // 3. Calculate ONLY the new steps (e.g., 5000 - 4000 = 1000 new steps)
             int newStepsToRedeem = currentSensorSteps - lastRedeemed;
 
-            // Stop listening immediately
             sensorManager.unregisterListener(this);
             isSensorActive = false;
 
-            // 4. Check if there are actually new steps
             if (newStepsToRedeem > 0) {
-                // Award points for the new steps
                 logWalkingPoints(newStepsToRedeem);
-
-                // CRITICAL: Save the current total so we don't pay for these again
                 prefs.setLastRedeemedSteps(currentSensorSteps);
             } else {
-                Toast.makeText(getContext(), "No new steps detected since last sync.", Toast.LENGTH_SHORT).show();
+                showSnack("No new steps detected since last sync.");
             }
         }
     }
 
     private void logWalkingPoints(int newSteps) {
-        // Logic: 1 point for every 100 steps
         int pointsEarned = newSteps / 100;
 
-        // Minimum threshold: Only award if they walked at least 100 steps
         if (pointsEarned == 0) {
-            Toast.makeText(getContext(), "Keep walking! You need " + (100 - newSteps) + " more steps for a point.", Toast.LENGTH_SHORT).show();
+            showSnack("Keep walking! You need " + (100 - newSteps) + " more steps for a point.");
             return;
         }
 
-        prefs.addPoints(pointsEarned);
+        // Check for level up BEFORE adding points
+        int beforePoints = prefs.getPoints();
+        int beforeLevel = (beforePoints / 500) + 1;
 
-        // Optional: Add CO2 stats (e.g., 0.1kg per 1000 steps)
-        if (pointsEarned > 10) {
+        // Add points and stats
+        prefs.addPoints(pointsEarned);
+        if (pointsEarned >= 10) {
             prefs.addCo2Saved(1);
         }
 
-        String message = "Synced " + newSteps + " new steps! +" + pointsEarned + " pts earned.";
-        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+        // Check for level up AFTER adding points
+        int afterPoints = prefs.getPoints();
+        int afterLevel = (afterPoints / 500) + 1;
+
+        if (afterLevel > beforeLevel) {
+            prefs.setPendingLevelUp(true);
+            prefs.setLastLevel(afterLevel);
+        }
+
+        // Update history
+        addToHistory("🚶 Walking", pointsEarned, newSteps + " steps");
+
+        String message = "Synced " + newSteps + " steps! +" + pointsEarned + " pts earned.";
+        showSnack(message);
+    }
+
+    // ==================== GENERAL ACTIVITY LOGGING ====================
+
+    private void logActivity(String activityName, int points, int co2Kg, int waterL, int wasteKg, String emoji) {
+        // Check for level up BEFORE adding points
+        int beforePoints = prefs.getPoints();
+        int beforeLevel = (beforePoints / 500) + 1;
+
+        // Add points and stats
+        prefs.addPoints(points);
+        prefs.addCo2Saved(co2Kg);
+        prefs.addWaterSaved(waterL);
+        prefs.addWasteDiverted(wasteKg);
+
+        // Check for level up AFTER adding points
+        int afterPoints = prefs.getPoints();
+        int afterLevel = (afterPoints / 500) + 1;
+
+        if (afterLevel > beforeLevel) {
+            prefs.setPendingLevelUp(true);
+            prefs.setLastLevel(afterLevel);
+        }
+
+        // Update history
+        addToHistory(emoji + " " + activityName, points, null);
+
+        // Show success message
+        showSnack("Logged: " + activityName + " • +" + points + " points");
+    }
+
+    // ==================== ACTIVITY HISTORY ====================
+
+    private void addToHistory(String activityLabel, int points, String extraInfo) {
+        String timestamp = dateFormat.format(new Date());
+        String newLine;
+
+        if (extraInfo != null) {
+            newLine = "• " + timestamp + " — " + activityLabel + " (" + extraInfo + ", +" + points + " pts)\n";
+        } else {
+            newLine = "• " + timestamp + " — " + activityLabel + " (+" + points + " pts)\n";
+        }
+
+        String existing = tvRecentLog.getText().toString();
+        if (existing.contains("No activities")) {
+            tvRecentLog.setText(newLine);
+        } else {
+            tvRecentLog.setText(newLine + existing);
+        }
+    }
+
+    // ==================== HELPERS ====================
+
+    private void showSnack(String message) {
+        if (getView() != null) {
+            Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // Not needed for step counting
+        // Not needed
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        if (sensorManager != null) {
+        if (sensorManager != null && isSensorActive) {
             sensorManager.unregisterListener(this);
+            isSensorActive = false;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Optionally reload history from SharedPreferences if you store it
     }
 }
