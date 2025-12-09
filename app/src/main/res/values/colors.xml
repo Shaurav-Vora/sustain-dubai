@@ -17,4 +17,5 @@
     <color name="color_water_cyan">#00ACC1</color>
     <color name="nav_active">#1B5E3C</color>
     <color name="nav_inactive">#757575</color>
+    <color name="ghaf_green_highlight">#331B5E3C</color>
 </resources>

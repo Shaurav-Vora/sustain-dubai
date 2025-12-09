@@ -23,12 +23,11 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         app:menu="@menu/menu_bottom_nav"
-
         app:itemIconTint="@color/ghaf_green"
         app:itemTextColor="@color/black"
+        app:itemActiveIndicatorStyle="@color/ghaf_green_highlight"
+        app:itemRippleColor="@color/ghaf_green_highlight"
         app:labelVisibilityMode="labeled"
-        app:itemRippleColor="#2E8B57"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
