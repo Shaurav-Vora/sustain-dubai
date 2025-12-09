@@ -472,7 +472,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🌳 Environmental Impact"
+            android:text="🌳 Sustainable Living"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#123026"
@@ -520,7 +520,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Plant a Ghaf Tree"
+                        android:text="Purchase Ghaf Tree seeds"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#123026" />
@@ -611,7 +611,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Protect Dubai Mangroves"
+                        android:text="Discount on electric vehicles"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#123026" />
@@ -619,7 +619,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Support coastal ecosystem restoration"
+                        android:text="15% off with electric vehicle purchases from selected partners"
                         android:textSize="12sp"
                         android:textColor="#4A6359"
                         android:layout_marginTop="4dp" />
@@ -634,7 +634,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1000"
+                            android:text="12500"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#00897B" />
@@ -660,17 +660,6 @@
                     android:textColor="#FFFFFF" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
-
-        <!-- Category: Lifestyle -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🛍️ Sustainable Living"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#123026"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="12dp" />
 
         <!-- Eco Starter Kit -->
         <com.google.android.material.card.MaterialCardView
@@ -762,5 +751,6 @@
                     android:textColor="#FFFFFF" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+
     </LinearLayout>
 </ScrollView>

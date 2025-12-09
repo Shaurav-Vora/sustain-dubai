@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:src="@android:drawable/checkbox_on_background"
+        app:tint="#1B5E3C"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Reward Unlocked!"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#123026"/>
+
+    <TextView
+        android:id="@+id/tvRewardName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Careem 25 AED Voucher"
+        android:textSize="14sp"
+        android:textColor="#4A6359"
+        android:layout_marginBottom="24dp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="#A5D6A7"
+        app:cardBackgroundColor="#F1F8E9"
+        android:layout_marginBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="YOUR PROMO CODE"
+                android:textSize="10sp"
+                android:letterSpacing="0.1"
+                android:textColor="#2E7D5A"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XB-9921"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#1B5E3C"
+                android:layout_marginTop="4dp"
+                android:letterSpacing="0.05"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#FAFAFA"
+        android:padding="12dp"
+        android:layout_marginBottom="24dp">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@android:drawable/ic_menu_info_details"
+            app:tint="#757575"
+            android:layout_marginTop="2dp"/>
+
+        <TextView
+            android:id="@+id/tvTerms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valid for one trip. Minimum fare 50 AED. Cannot be combined with other offers."
+            android:textSize="12sp"
+            android:textColor="#616161"
+            android:layout_marginStart="8dp"
+            android:lineSpacingExtra="2dp"/>
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCopyCode"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Copy Code"
+        android:backgroundTint="#1B5E3C"
+        android:textColor="@color/white"
+        app:cornerRadius="12dp"
+        android:layout_marginBottom="8dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCloseSheet"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Close"
+        android:textColor="#1B5E3C"
+        android:backgroundTint="#FFFFFF"
+        app:strokeColor="#1B5E3C"
+        app:strokeWidth="1dp"
+        app:cornerRadius="12dp"/>
+
+</LinearLayout>
