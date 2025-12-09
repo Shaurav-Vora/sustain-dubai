@@ -30,6 +30,16 @@ public class EcoPrefs {
         return prefs.getInt(KEY_LAST_DISPLAYED_POINTS, -1);
     }
 
+    private static final String KEY_LAST_REDEEMED_STEPS = "last_redeemed_steps";
+
+    public int getLastRedeemedSteps() {
+        return prefs.getInt(KEY_LAST_REDEEMED_STEPS, 0);
+    }
+
+    public void setLastRedeemedSteps(int steps) {
+        prefs.edit().putInt(KEY_LAST_REDEEMED_STEPS, steps).apply();
+    }
+
     public void setLastDisplayedPoints(int points) {
         prefs.edit().putInt(KEY_LAST_DISPLAYED_POINTS, points).apply();
     }

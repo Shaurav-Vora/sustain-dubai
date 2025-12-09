@@ -99,29 +99,50 @@ public class ActivitiesFragment extends Fragment implements SensorEventListener 
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (isSensorActive && event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
-            // Android returns TOTAL steps since last reboot
-            int totalStepsSinceReboot = (int) event.values[0];
+            // 1. Get the raw total from the sensor (e.g., 5000 steps since reboot)
+            int currentSensorSteps = (int) event.values[0];
 
-            // Unregister immediately to save battery (we just wanted a sync check)
+            // 2. Get the count we already paid for (e.g., 4000 steps)
+            int lastRedeemed = prefs.getLastRedeemedSteps();
+
+            // 3. Calculate ONLY the new steps (e.g., 5000 - 4000 = 1000 new steps)
+            int newStepsToRedeem = currentSensorSteps - lastRedeemed;
+
+            // Stop listening immediately
             sensorManager.unregisterListener(this);
             isSensorActive = false;
 
-            // Log the points
-            logWalkingPoints(totalStepsSinceReboot);
+            // 4. Check if there are actually new steps
+            if (newStepsToRedeem > 0) {
+                // Award points for the new steps
+                logWalkingPoints(newStepsToRedeem);
+
+                // CRITICAL: Save the current total so we don't pay for these again
+                prefs.setLastRedeemedSteps(currentSensorSteps);
+            } else {
+                Toast.makeText(getContext(), "No new steps detected since last sync.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
-    private void logWalkingPoints(int steps) {
-        // Calculate Points: e.g., 1 point for every 100 steps
-        int pointsEarned = steps / 100;
+    private void logWalkingPoints(int newSteps) {
+        // Logic: 1 point for every 100 steps
+        int pointsEarned = newSteps / 100;
 
-        // Cap it for the demo (so they don't get 1 million points if they haven't rebooted in a year)
-        if (pointsEarned > 50) pointsEarned = 50;
+        // Minimum threshold: Only award if they walked at least 100 steps
+        if (pointsEarned == 0) {
+            Toast.makeText(getContext(), "Keep walking! You need " + (100 - newSteps) + " more steps for a point.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         prefs.addPoints(pointsEarned);
-        prefs.addCo2Saved(1); // Add 1kg CO2 for effort
 
-        String message = "Synced! " + steps + " steps detected. +" + pointsEarned + " pts earned.";
+        // Optional: Add CO2 stats (e.g., 0.1kg per 1000 steps)
+        if (pointsEarned > 10) {
+            prefs.addCo2Saved(1);
+        }
+
+        String message = "Synced " + newSteps + " new steps! +" + pointsEarned + " pts earned.";
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 
